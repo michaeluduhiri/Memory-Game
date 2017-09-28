@@ -1,8 +1,9 @@
 //Create an array that holds all of your cards
  var cardImage = ['anchor', 'anchor', 'bicycle', 'bicycle', 'bolt', 'bolt', 'bomb', 'bomb', 'cube', 'cube', 'diamond', 'diamond', 'leaf', 'leaf', 'paper-plane-o', 'paper-plane-o'];
 
-// Temporary store values in the array for comparison
+//Temporarily store the card's image in the array for comparison
 var cardOpen = [];
+//Temporarily store the card's id
 var cardValue = [];
 // Track the number of cards that have been flipped
 var cardFlip = 0;
@@ -21,7 +22,7 @@ function shuffle(array) {
     return array;
 }
 
-//Initialize Game
+//Create a new board for the memory game. Everytime the board is created, the cards are reset
 function initMemoryGame() {
   cardFlip = 0;
   var card = '';
@@ -34,16 +35,16 @@ function initMemoryGame() {
 }
 //window.addEventListener("click", initMemoryGame)
 
-function cardBoard(card,val){
+function cardBoard(card,image){
   if (card.innerHTML == "" && cardOpen.length < 2) {
     card.style.background = '#FFF';
-    card.innerHTML = val;
+    card.innerHTML = image;
     if (cardOpen.length == 0) {
-      cardOpen.push(val);
+      cardOpen.push(image);
       cardValue.push(card.id);
     }
     else if (cardOpen.length == 1) {
-      cardOpen.push(val);
+      cardOpen.push(image);
       cardValue.push(card.id);
     if (cardOpen[0] == cardOpen[1]){
       cardFlip += 2;
@@ -58,20 +59,18 @@ function cardBoard(card,val){
     }
     else {
 function flipCardBack() {
-  
-        
-				    // Flip the 2 tiles back over
+	// Flip the 2 cards back over
 	var card_1 = document.getElementById(cardValue[0]);
 	var card_2 = document.getElementById(cardValue[1]);
 	card_1.style.background = 'url(../img/geometry2.png) no-repeat';
-  card_1.innerHTML = "";
+  	card_1.innerHTML = "";
 	card_2.style.background = 'url(../img/geometry2.png) no-repeat';
-  card_2.innerHTML = "";
+  	card_2.innerHTML = "";
 	// Clear both arrays
 	cardOpen = [];
-  cardValue = [];
-				}
-				setTimeout(flip2Back, 1000);
+  	cardValue = [];
+	}
+	setTimeout(flipCardBack, 1000);
       }
     }
   }
