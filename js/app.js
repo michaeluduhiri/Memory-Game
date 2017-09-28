@@ -57,19 +57,21 @@ function cardBoard(card,val){
       }
     }
     else {
-      function flipCardBack() {
+function flipCardBack() {
+  
+        
 				    // Flip the 2 tiles back over
-				    var card_1 = document.getElementById(cardValue[0]);
-				    var card_2 = document.getElementById(cardValue[1]);
-				    card_1.style.background = 'url(../img/geometry2.png) no-repeat';
-            card_1.innerHTML = "";
-				    card_2.style.background = 'url(../img/geometry2.png) no-repeat';
-            card_2.innerHTML = "";
-				    // Clear both arrays
-				    cardOpen = [];
-            cardValue = [];
+	var card_1 = document.getElementById(cardValue[0]);
+	var card_2 = document.getElementById(cardValue[1]);
+	card_1.style.background = 'url(../img/geometry2.png) no-repeat';
+  card_1.innerHTML = "";
+	card_2.style.background = 'url(../img/geometry2.png) no-repeat';
+  card_2.innerHTML = "";
+	// Clear both arrays
+	cardOpen = [];
+  cardValue = [];
 				}
-				setTimeout(flip2Back, 100);
+				setTimeout(flip2Back, 1000);
       }
     }
   }
