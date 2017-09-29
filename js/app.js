@@ -4,7 +4,7 @@ Create a blank array that temporarily stores card values
 Create a rating system as the user plays the game
 Add a timer when the user starts the game
 */
-var cardImage = ['bicycle', 'bicycle', 'leaf', 'leaf', 'cube', 'cube', 'anchor', 'anchor', 'paper-plane-o', 'paper-plane-o', 'bolt', 'bolt', 'bomb', 'bomb', 'diamond', 'diamond'],
+var cardImage = ['anchor', 'anchor', 'bicycle', 'bicycle', 'bolt', 'bolt', 'bomb', 'bomb', 'cube', 'cube', 'diamond', 'diamond', 'leaf', 'leaf', 'paper-plane-o', 'paper-plane-o'],
 		cardOpen = [],
 		cardMatch = 0,
 		cardMoves = 0,
@@ -76,11 +76,10 @@ function setRating(cardMoves) {
 
 // End Game
 function endGame(cardMoves, score) {
-	swal({
 		allowEscapeKey: false,
 		allowOutsideClick: false,
-		title: 'Congratulations! You Won!',
-		text: 'With ' + cardMoves + ' Moves and ' + score + ' Stars.\n Woooooo!',
+		title: 'Congratulations!',
+		text: 'With ' + cardMoves + ' Moves and ' + score + ' Stars.',
 		type: 'success',
 		confirmButtonColor: '#02ccba',
 		confirmButtonText: 'Play again!'
@@ -88,12 +87,10 @@ function endGame(cardMoves, score) {
 		if (isConfirm) {
 			initGame();
 		}
-	});
 }
 
 // Restart Game
 $restart.bind('click', function() {
-  swal({
     allowEscapeKey: false,
     allowOutsideClick: false,
     title: 'Are you sure?',
@@ -107,7 +104,6 @@ $restart.bind('click', function() {
     if (isConfirm) {
       initGame();
     }
-  });
 });
 
 var addCardListener = function() {
