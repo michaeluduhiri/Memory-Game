@@ -1,151 +1,120 @@
 //Create an array that holds all of your cards
- var cardImage = ['anchor', 'anchor', 'bicycle', 'bicycle', 'bolt', 'bolt', 'bomb', 'bomb', 'cube', 'cube', 'diamond', 'diamond', 'leaf', 'leaf', 'paper-plane-o', 'paper-plane-o'];
-
-//Temporarily store the card's image in the array for comparison
-var cardOpen = [];
-//Temporarily store the card's id
-var cardValue = [];
-// Track the number of cards that have been flipped
-var cardFlip = 0;
-
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
-//Create a new board for the memory game. Everytime the board is created, the cards are reset
-function initMemoryGame() {
-  cardFlip = 0;
-  var card = '';
-  cardImage.shuffle();
-//Loop over the cards
-  for (var i = 0; i < cardImage.length; i++) {
-    card += '<div id="card_'+i+'" onclick="cardBoard(this,\''+cardImage[i]+'\')"></div>';
-  }
-  document.getElementbyId('memory_game').innerHTML = card;
-}
-//window.addEventListener("click", initMemoryGame)
-
-function cardBoard(card,image){
-  if (card.innerHTML == "" && cardOpen.length < 2) {
-    card.style.background = '#FFF';
-    card.innerHTML = image;
-    if (cardOpen.length == 0) {
-      cardOpen.push(image);
-      cardValue.push(card.id);
-    }
-    else if (cardOpen.length == 1) {
-      cardOpen.push(image);
-      cardValue.push(card.id);
-    if (cardOpen[0] == cardOpen[1]){
-      cardFlip += 2;
-      cardOpen = [];
-      cardValue = [];
-
-      if (cardFlip == cardImage.length) {
-        alert ("Board cleared...generating new board");
-        document.getElementbyId('memory_game').innerHTML = "";
-        initMemoryGame();
-      }
-    }
-    else {
-function flipCardBack() {
-	// Flip the 2 cards back over
-	var card_1 = document.getElementById(cardValue[0]);
-	var card_2 = document.getElementById(cardValue[1]);
-	card_1.style.background = 'url(../img/geometry2.png) no-repeat';
-  	card_1.innerHTML = "";
-	card_2.style.background = 'url(../img/geometry2.png) no-repeat';
-  	card_2.innerHTML = "";
-	// Clear both arrays
-	cardOpen = [];
-  	cardValue = [];
-	}
-	setTimeout(flipCardBack, 1000);
-      }
-    }
-  }
-}
-
-
-//Let the games begin.
-//initMemoryGame();
-
-
-
-
-
-
-
-
-/*
- * Create a list that holds all of your cards
- */
 var cardImage = ['anchor', 'anchor', 'bicycle', 'bicycle', 'bolt', 'bolt', 'bomb', 'bomb', 'cube', 'cube', 'diamond', 'diamond', 'leaf', 'leaf', 'paper-plane-o', 'paper-plane-o'],
 	cardOpen = [],
-    	cardMatch = 0,
+	cardMatch = 0,
 	cardMoves = 0,
-    	cardFlip = 0,
-    	$rating = $('i'),
-    	ratingSystem = cardImage.length / 3,
-    	rating3Stars = ratingSystem + 3,
+	cardFlip = 0,
+	$rating = $('i'),
+	ratingSystem = cardImage.length / 3,
+	rating3Stars = ratingSystem + 3,
 	rating2Stars = ratingSystem + 6,
 	rating1Stars = ratingSystem + 9,
-    	$restart = $('.restart'),
-    	$numOfMoves = $('.moves'),
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+	$restart = $('.restart');
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
+	var currentIndex = array.length, temporaryValue, randomIndex;
+	while (currentIndex !== 0) {
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
+	return array;
 }
-
-
-/*
- * set up the event listener for a card. If a card is clicked:
+//Initialize Game
  var card = function initMemoryGame() {
  	shuffle.cardImage;
+	$deck.empthy();
 	cardMatch = 0;
 	cardMoves = 0;
-	$numOfMoves.text('0')
+	$numOfMoves.text('0');
 	$rating.removeClass('fa-star-o').addClass('fa-star');
+	 	//Loop over the cards array
 		for (var i = 0; i < cardImage.length; i++) {
 			$deck.append(S('<li class="card"><i class="fa fa-' + cards[i] + '"></i></li>'
-	
-	}
- 
- 
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+		}
+		addEventListener();
+	};
 
+//Event Listener for card click. When clicked, flip the card
+$deck.find('.card:not(".match, .open")').bind('click' , function() {
+	if($('.show').length > 1) {
+		return true;
+		}
+	var $this = $(this),
+	card = $this.context.innerHTML;
+	$this.addClass('open show');
+	opened.push(card);
+	
+	if (opened.length > 1) {
+		if (card === opened[0]) {
+			$deck.find('.open').addClass('match animated infinite rubberBand');
+			setTimeout(function() {
+			$deck.find('.match').removeClass('open show animated infinite rubberBand');
+			}, delay);
+			match++;
+		} else {
+			$deck.find('.open').addClass('notmatch animated infinite wobble');
+			setTimeout(function() {
+			$deck.find('.open').removeClass('animated infinite wobble');
+			}, delay / 1.5);
+			setTimeout(function() {
+			$deck.find('.open').removeClass('open show notmatch animated infinite wobble');
+			}, delay);
+		}
+			opened = [];
+			moves++;
+			setRating(moves);
+			$moveNum.html(moves);
+	}
+})
+//End Game	
+function endGame (moves, score) {
+	allowEscapeKey: false,
+	allowOutsideClick: false,
+	title: 'Congratulations!',
+	text: 'You completed it with ' + moves + ' moves and ' + score + ' stars!',
+	type: 'success',
+	confirmButtonColor: '#02ccba',
+	confirmButtonText: 'Play again!'
+}).then(function(isConfirm) {
+	if (isConfirm) {
+		initGame();
+		}
+	})
+}
+
+function starRating(moves) {
+	var rating = 3;
+	if (moves > rating3Stars && moves < rating2Stars) {
+		$ratingStars.eq(2).removeClass('fa-star').addClass('fa-star-o');
+		rating = 2;
+	} else if (moves > rank2Stars && moves < rating1Star) {
+		$ratingStars.eq(1).removeClass('fa-star').addClass('fa-star-o');
+		rating = 1;
+	} else if (moves > rating1Star) {
+		$ratingStars.eq(0).removeClass('fa-star').addClass('fa-star-o');
+		rating = 0;
+	}
+	return { score: rating };
+};
+
+// Restart Game
+$restart.bind('click', function() {
+	allowEscapeKey: false,
+	allowOutsideClick: false,
+	showCancelButton: true,
+	confirmButtonColor: '#02ccba',
+	cancelButtonColor: '#f95c3c',
+	confirmButtonText: 'Yes, Restart Game!'
+	}).then(function(isConfirm) {
+		if (isConfirm) {
+			initGame();
+		}
+	})
+});
+
+//Let the games begin
+inintMemoryGame();
