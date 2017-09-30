@@ -101,7 +101,7 @@ function endGame(cardMoves, score) {
 		allowEscapeKey: false,
 		allowOutsideClick: false,
 		title: 'Congratulations! You Won!',
-		text: 'With ' + cardMoves +  ' Moves and ' + score + ' Stars.\n Woooooo!',
+		text: 'With ' + cardMoves +  ' Moves and ' + score + ' Stars. You finished in ' + timer.getValuesTimeValues().toString() + \n Woooooo!',
 		type: 'success',
 		confirmButtonColor: '#02ccba',
 		confirmButtonText: 'Play again!'
@@ -109,7 +109,8 @@ function endGame(cardMoves, score) {
 		if (isConfirm) {
 			initMemoryGame();
 		}
-	})
+	});
+	timer.stop();
 }
 
 /**
@@ -182,7 +183,7 @@ Add animations for cards matching and not matching
 		setTimeout(function() {
 			endGame(cardMoves, score);
 		}, 500);
-		timer.stop();
+
   }
 });
 };
