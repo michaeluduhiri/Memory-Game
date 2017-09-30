@@ -89,7 +89,7 @@ function setRating(cardMoves) {
 		rating = 0;
 	}
 	return { score: rating };
-}
+};
 
 /**
 * Behavior: When the user completes the game, display a Congratulatory note, the time it took to complete, the number of moves left and the stars left.
