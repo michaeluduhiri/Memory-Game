@@ -95,6 +95,7 @@ function setRating(cardMoves) {
 * Output: Congratulatory note, timer, number of movies, score
 */
 function endGame(cardMoves, score) {
+	swal({
 		allowEscapeKey: false,
 		allowOutsideClick: false,
 		title: 'Congratulations!',
@@ -102,10 +103,11 @@ function endGame(cardMoves, score) {
 		type: 'success',
 		confirmButtonColor: '#02ccba',
 		confirmButtonText: 'Play again!'
-	}).then(function(isConfirm) {
+		}).then(function(isConfirm) {
 		if (isConfirm) {
 			initMemoryGame();
 		}
+	})
 }
 
 /**
@@ -114,19 +116,21 @@ function endGame(cardMoves, score) {
 *	Output: Reset key, message prompts if user is sure they want to quit
 */
 $restart.bind('click', function() {
-    allowEscapeKey: false,
-    allowOutsideClick: false,
-    title: 'Are you sure?',
-    text: "Your progress will be Lost!",
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#02ccba',
-    cancelButtonColor: '#f95c3c',
-    confirmButtonText: 'Yes, Restart Game!'
-  }).then(function(isConfirm) {
-    if (isConfirm) {
-      initMemoryGame();
-    }
+	swal({	
+		allowEscapeKey: false,
+		allowOutsideClick: false,
+		title: 'Are you sure?',
+		text: "Your progress will be Lost!",
+		type: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#02ccba',
+		cancelButtonColor: '#f95c3c',
+		confirmButtonText: 'Yes, Restart Game!'
+		}).then(function(isConfirm) {
+		if (isConfirm) {
+			initMemoryGame();
+    		}
+	})
 });
 
 /**
