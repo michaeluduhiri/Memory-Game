@@ -16,9 +16,9 @@ var cardImage = ['anchor', 'anchor', 'bicycle', 'bicycle', 'bolt', 'bolt', 'bomb
 		$restart = $('.restart'),
 		delay = 600,
 		gameCards = cardImage.length / 2,
-		rating3Stars = gameCards + 3,
-		rating2Stars = gameCards + 6,
-		rating1Star = gameCards + 9;
+		rating3Stars = gameCards + 0,
+		rating2Stars = gameCards + 1,
+		rating1Star = gameCards + 2;
 		
 	//Add a timer variable from Easytimer.js
 		var timer = new Timer();
