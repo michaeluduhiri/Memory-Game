@@ -101,7 +101,7 @@ function endGame(cardMoves, score) {
 		allowEscapeKey: false,
 		allowOutsideClick: false,
 		title: 'Congratulations! You Won!',
-		text: 'With ' + moves + ' Moves and ' + score + ' Stars.\n Woooooo!',
+		text: 'With ' + cardMoves + ' Moves and ' + score + ' Stars.\n Woooooo!',
 		type: 'success',
 		confirmButtonColor: '#02ccba',
 		confirmButtonText: 'Play again!'
