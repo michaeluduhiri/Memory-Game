@@ -68,7 +68,7 @@ function initMemoryGame() {
 	addCardListener();
 	timer.reset();
 	timer.stop();
-}
+};
 
 /**
 * Behavior: Set if statement where the number of moves the user makes 'decreases' the star
