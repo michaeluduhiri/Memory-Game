@@ -19,7 +19,7 @@ var cardImage = ['anchor', 'anchor', 'bicycle', 'bicycle', 'bolt', 'bolt', 'bomb
 		rating3Stars = gameCards + 3,
 		rating2Stars = gameCards + 6,
 		rating1Star = gameCards + 9,
-		//Add a timer variable
+		//Add a timer variable from Easytimer.js
 		timer = new Timer();
 		//Event listener for the timer variable
 		timer.addEventListener('secondsUpdated', function (e) {
