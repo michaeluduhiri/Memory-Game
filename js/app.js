@@ -101,7 +101,7 @@ function endGame(cardMoves, score) {
 		allowEscapeKey: false,
 		allowOutsideClick: false,
 		title: 'Congratulations! You Won!',
-		text: 'With ' + cardMoves + ' Moves and ' + score + ' Stars.\n Woooooo!',
+		text: 'With ' + cardMoves +  ' Moves and ' + score + ' Stars.\n Woooooo!',
 		type: 'success',
 		confirmButtonColor: '#02ccba',
 		confirmButtonText: 'Play again!'
@@ -177,7 +177,7 @@ Add animations for cards matching and not matching
 
 	// End Game if all cards match all cards
 	if (gameCards === cardMatch) {
-		setRating(cardMoves);
+		//setRating(cardMoves);
 		var score = setRating(cardMoves).score;
 		setTimeout(function() {
 			endGame(cardMoves, score);
