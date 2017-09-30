@@ -18,14 +18,14 @@ var cardImage = ['anchor', 'anchor', 'bicycle', 'bicycle', 'bolt', 'bolt', 'bomb
 		gameCards = cardImage.length / 3,
 		rating3Stars = gameCards + 3,
 		rating2Stars = gameCards + 6,
-		rating1Star = gameCards + 9,
+		rating1Star = gameCards + 9;
 		
 	//Add a timer variable from Easytimer.js
-		timer = new Timer();
+		var timer = new Timer();
 		
 	//Event listener for the timer variable
 		timer.addEventListener('secondsUpdated', function (e) {
-        $('.gameTimer').html(timer.getTimeValues().toString());
+			$('.gameTimer').html(timer.getTimeValues().toString());
 		});
 
 /**
