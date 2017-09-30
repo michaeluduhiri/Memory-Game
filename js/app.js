@@ -99,7 +99,7 @@ function endGame(cardMoves, score) {
 		allowEscapeKey: false,
 		allowOutsideClick: false,
 		title: 'Congratulations!',
-		text: 'You completed the game in ' + timer + ', with' + cardMoves + ' Moves and ' + score + ' Stars.',
+		text: 'You completed the game with' + cardMoves + ' Moves and ' + score + ' Stars.',
 		type: 'success',
 		confirmButtonColor: '#02ccba',
 		confirmButtonText: 'Play again!'
