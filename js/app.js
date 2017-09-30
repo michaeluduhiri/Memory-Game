@@ -107,7 +107,7 @@ function endGame(cardMoves, score) {
 		confirmButtonText: 'Play again!'
 	}).then(function(isConfirm) {
 		if (isConfirm) {
-			initGame();
+			initMemoryGame();
 		}
 	})
 }
@@ -130,7 +130,7 @@ $restart.bind('click', function() {
     confirmButtonText: 'Yes, Restart Game!'
   }).then(function(isConfirm) {
     if (isConfirm) {
-      initGame();
+      initMemoryGame();
     }
   })
 });
