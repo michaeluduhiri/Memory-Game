@@ -23,7 +23,7 @@ var cardImage = ['anchor', 'anchor', 'bicycle', 'bicycle', 'bolt', 'bolt', 'bomb
 		timer = new Timer();
 		//Event listener for the timer variable
 		timer.addEventListener('secondsUpdated', function (e) {
-        $('.gametimer').html(timer.getTimeValues().toString());
+        $('.gameTimer').html(timer.getTimeValues().toString());
 		});
 
 /**
