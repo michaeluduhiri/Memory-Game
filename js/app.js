@@ -1,6 +1,7 @@
-/*
+/**
 Create a list of all the card values
 Create a blank array that temporarily stores card values
+Create variables to capture the card's value
 Create a rating system as the user plays the game
 Add a timer when the user starts the game
 */
@@ -25,7 +26,9 @@ var cardImage = ['anchor', 'anchor', 'bicycle', 'bicycle', 'bolt', 'bolt', 'bomb
         $('.timer').html(timer.getTimeValues().toString());
 		});
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+/**
+* Shuffle function from http://stackoverflow.com/a/2450976
+*/
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -40,15 +43,22 @@ function shuffle(array) {
   return array;
 }
 
-// Initialize Game
+/**
+* Behavior: The board is randomly shuffled everytime the game is initialized.
+* Input: The card's value
+*	Output: Randomly shuffled cards, star rating system, timer, event Listener
+	to begin the timer when the first card is clicked.
+*/
 function initMemoryGame() {
+
   var cards = shuffle(cardImage);
   $deck.empty();
   cardMatch = 0;
   cardMoves = 0;
   $moveNum.text('0');
-//Loop to go over each card
   $ratingSystem.removeClass('fa-star-o').addClass('fa-star');
+
+	//Loop to go over each card
 	for (var i = 0; i < cards.length; i++) {
 		$deck.append($('<li class="card"><i class="fa fa-' + cards[i] + '"></i></li>'));
 	}
@@ -58,7 +68,12 @@ function initMemoryGame() {
 	timer.stop();
 }
 
-// Set the rating system
+/**
+* Behavior: Set if statement where the number of moves the user makes 'decreases' the star
+*	Input: Number of moves user makes
+*	Output: The star 'decreases' by replacing a filled in star with a blank star
+*/
+
 function setRating(cardMoves) {
 	var rating = 3;
 	if (cardMoves > rating3Stars && cardMoves < rating2Stars) {
@@ -74,22 +89,30 @@ function setRating(cardMoves) {
 	return { score: rating };
 }
 
-// End Game
+/**
+* Behavior: When the user completes the game, display a Congratulatory note, the time it took to complete, the number of moves left and the stars left.
+* Input: N/A
+* Output: Congratulatory note, timer, number of movies, score
+*/
 function endGame(cardMoves, score) {
 		allowEscapeKey: false,
 		allowOutsideClick: false,
 		title: 'Congratulations!',
-		text: 'With ' + cardMoves + ' Moves and ' + score + ' Stars.',
+		text: 'You completed the game in ' + timer + ', with' + cardMoves + ' Moves and ' + score + ' Stars.',
 		type: 'success',
 		confirmButtonColor: '#02ccba',
 		confirmButtonText: 'Play again!'
 	}).then(function(isConfirm) {
 		if (isConfirm) {
-			initGame();
+			initMemoryGame();
 		}
 }
 
-// Restart Game
+/**
+* Behavior: Allow user to quit the game by clicking the reset button
+* Input:N/A
+*	Output: Reset key, message prompts if user is sure they want to quit
+*/
 $restart.bind('click', function() {
     allowEscapeKey: false,
     allowOutsideClick: false,
@@ -102,13 +125,16 @@ $restart.bind('click', function() {
     confirmButtonText: 'Yes, Restart Game!'
   }).then(function(isConfirm) {
     if (isConfirm) {
-      initGame();
+      initMemoryGame();
     }
 });
 
+/**
+* Behavior: Listen to the click event listener and check if the card has been flipped. Compare with the next card clicked
+*	Input: Click
+*	Output: Compare cards flipped
+*/
 var addCardListener = function() {
-
-// Card flip
 $deck.find('.card:not(".match, .open")').bind('click' , function() {
 	if($('.show').length > 1) { return true; }
 		if (timer.getTotalTimeValues().seconds === 0) {
