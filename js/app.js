@@ -23,7 +23,7 @@ var cardImage = ['anchor', 'anchor', 'bicycle', 'bicycle', 'bolt', 'bolt', 'bomb
 		timer = new Timer();
 		//Event listener for the timer variable
 		timer.addEventListener('secondsUpdated', function (e) {
-        $('.timer').html(timer.getTimeValues().toString());
+        $('.gametimer').html(timer.getTimeValues().toString());
 		});
 
 /**
@@ -98,14 +98,14 @@ function endGame(cardMoves, score) {
 	swal({
 		allowEscapeKey: false,
 		allowOutsideClick: false,
-		title: 'Congratulations!',
-		text: 'You completed the game with' + cardMoves + ' Moves and ' + score + ' Stars.',
+		title: 'Congratulations! You Won!',
+		text: 'With ' + moves + ' Moves and ' + score + ' Stars.\n Woooooo!',
 		type: 'success',
 		confirmButtonColor: '#02ccba',
 		confirmButtonText: 'Play again!'
-		}).then(function(isConfirm) {
+	}).then(function(isConfirm) {
 		if (isConfirm) {
-			initMemoryGame();
+			initGame();
 		}
 	})
 }
@@ -116,21 +116,21 @@ function endGame(cardMoves, score) {
 *	Output: Reset key, message prompts if user is sure they want to quit
 */
 $restart.bind('click', function() {
-	swal({	
-		allowEscapeKey: false,
-		allowOutsideClick: false,
-		title: 'Are you sure?',
-		text: "Your progress will be Lost!",
-		type: 'warning',
-		showCancelButton: true,
-		confirmButtonColor: '#02ccba',
-		cancelButtonColor: '#f95c3c',
-		confirmButtonText: 'Yes, Restart Game!'
-		}).then(function(isConfirm) {
-		if (isConfirm) {
-			initMemoryGame();
-    		}
-	})
+  swal({
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+    title: 'Are you sure?',
+    text: "Your progress will be Lost!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#02ccba',
+    cancelButtonColor: '#f95c3c',
+    confirmButtonText: 'Yes, Restart Game!'
+  }).then(function(isConfirm) {
+    if (isConfirm) {
+      initGame();
+    }
+  })
 });
 
 /**
@@ -148,8 +148,9 @@ $deck.find('.card:not(".match, .open")').bind('click' , function() {
 		card = $this.context.innerHTML;
         $this.addClass('open show');
 		cardOpen.push(card);
-
-	// Compare with opened card
+/**
+Add animations for cards matching and not matching
+*/
   if (cardOpen.length > 1) {
     if (card === cardOpen[0]) {
       $deck.find('.open').addClass('match animated infinite rubberBand');
