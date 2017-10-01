@@ -143,7 +143,7 @@ $restart.bind('click', function() {
 */
 var addCardListener = function() {
 	$('li.card', $deck).click(function(e) {
-	if ($this[0].classList.contains('match') || $this[0].classList.contains('open')) return false;
+	if (this.classList.contains('match') || this.classList.contains('open')) return false;
 	else {
 		if (timer.getTotalTimeValues().seconds === 0) {
 			timer.start();
@@ -185,20 +185,21 @@ var addCardListener = function() {
         }
     }
 });
-//$deck.find('.card:not(".match, .open")').bind('click' , function() {
-//	if($('.show').length > 1) { return true; 
-//	}
-//		if (timer.getTotalTimeValues().seconds === 0) {
-//			timer.start();
-//		}
-//		var $this = $(this),
-//		card = $this.context.innerHTML;
-  //      $this.addClass('open show');
-	//	cardOpen.push(card);
+}
+/**$deck.find('.card:not(".match, .open")').bind('click' , function() {
+	if($('.show').length > 1) { return true; 
+	}
+		if (timer.getTotalTimeValues().seconds === 0) {
+			timer.start();
+		}
+		var $this = $(this),
+		card = $this.context.innerHTML;
+      $this.addClass('open show');
+	cardOpen.push(card);
 /**
 Add animations for cards matching and not matching
 */
- /** if (cardOpen.length > 1) {
+/** if (cardOpen.length > 1) {
     if (card === cardOpen[0]) {
       $deck.find('.open').addClass('match animated infinite rubberBand');
       setTimeout(function() {
