@@ -143,17 +143,48 @@ $restart.bind('click', function() {
 */
 var addCardListener = function() {
 	$('li.card', $deck).click(function(e) {
-	if ($this[0].classList.contains('match') || $this[0].classList.contains('open')) return falose;
+	if ($this[0].classList.contains('match') || $this[0].classList.contains('open')) return false;
 	else {
 		if (timer.getTotalTimeValues().seconds === 0) {
 			timer.start();
 		}
 		var $this = $(this),
 		card = $this.context.innerHTML;
-      $this.addClass('open show');
-	cardOpen.push(card);
-	}
-	});
+        $this.addClass('open show');
+		cardOpen.push(card);
+		
+		if (cardOpen.length > 1) {
+            if (card === cardOpen[0]) {
+                $deck.find('.open').addClass('match animated infinite rubberBand');
+                setTimeout(function() {
+                    $deck.find('.match').removeClass('open show animated infinite rubberBand');
+                }, delay);
+                cardMatch++;
+            } else {
+                $deck.find('.open').addClass('notmatch animated infinite wobble');
+			    setTimeout(function() {
+				    $deck.find('.open').removeClass('animated infinite wobble');
+		    	}, delay / 1.5);
+                setTimeout(function() {
+                    $deck.find('.open').removeClass('open show notmatch animated infinite wobble');
+                }, delay);
+            }
+            cardOpen = [];
+		    cardMoves++;
+		    setRating(cardMoves);
+		    $moveNum.html(cardMoves);
+        }
+
+	    // End Game if all cards match all cards
+	    if (gameCards === cardMatch) {
+	    	//setRating(cardMoves);
+	    	var score = setRating(cardMoves).score;
+		    setTimeout(function() {
+		    	endGame(cardMoves, score);
+		    }, 500);
+        }
+    }
+});
 //$deck.find('.card:not(".match, .open")').bind('click' , function() {
 //	if($('.show').length > 1) { return true; 
 //	}
