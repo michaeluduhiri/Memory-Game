@@ -142,15 +142,28 @@ $restart.bind('click', function() {
 *	Output: Compare cards flipped
 */
 var addCardListener = function() {
-$deck.find('.card:not(".match, .open")').bind('click' , function() {
-	if($('.show').length > 1) { return true; }
+	$('li.card', $deck).click(function(e) {
+	if ($this[0].classList.contains('match') || $this[0].classList.contains('open')) return falose;
+	else {
 		if (timer.getTotalTimeValues().seconds === 0) {
 			timer.start();
 		}
 		var $this = $(this),
 		card = $this.context.innerHTML;
-        $this.addClass('open show');
-		cardOpen.push(card);
+      $this.addClass('open show');
+	cardOpen.push(card);
+	}
+	});
+//$deck.find('.card:not(".match, .open")').bind('click' , function() {
+//	if($('.show').length > 1) { return true; 
+//	}
+//		if (timer.getTotalTimeValues().seconds === 0) {
+//			timer.start();
+//		}
+//		var $this = $(this),
+//		card = $this.context.innerHTML;
+  //      $this.addClass('open show');
+	//	cardOpen.push(card);
 /**
 Add animations for cards matching and not matching
 */
