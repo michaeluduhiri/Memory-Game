@@ -16,9 +16,9 @@ var cardImage = ['anchor', 'anchor', 'bicycle', 'bicycle', 'bolt', 'bolt', 'bomb
 		$restart = $('.restart'),
 		delay = 600,
 		gameCards = cardImage.length / 2,
-		rating3Stars = gameCards + 0,
-		rating2Stars = gameCards + 1,
-		rating1Star = gameCards + 2;
+		rating3Stars = gameCards + 2,
+		rating2Stars = gameCards + 4,
+		rating1Star = gameCards + 8;
 		
 	//Add a timer variable from Easytimer.js
 		var timer = new Timer();
@@ -85,8 +85,8 @@ function setRating(cardMoves) {
 		$ratingSystem.eq(1).removeClass('fa-star').addClass('fa-star-o');
 		rating = 1;
 	} else if (cardMoves > rating1Star) {
-		$ratingSystem.eq(0).removeClass('fa-star').addClass('fa-star-o');
-		rating = 0;
+		//$ratingSystem.eq(0).removeClass('fa-star').addClass('fa-star-o');
+		rating = 1;
 	}
 	return { score: rating };
 };
