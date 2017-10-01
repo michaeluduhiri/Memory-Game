@@ -84,9 +84,9 @@ function setRating(cardMoves) {
 	} else if (cardMoves > rating2Stars && cardMoves < rating1Star) {
 		$ratingSystem.eq(1).removeClass('fa-star').addClass('fa-star-o');
 		rating = 1;
-	} else if (cardMoves > rating1Star) {
-		$ratingSystem.eq(0).removeClass('fa-star').addClass('fa-star-o');
-		rating = 0;
+	//} else if (cardMoves > rating1Star) {
+	//	$ratingSystem.eq(0).removeClass('fa-star').addClass('fa-star-o');
+	//	rating = 0;
 	}
 	return { score: rating };
 };
