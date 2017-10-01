@@ -198,7 +198,7 @@ var addCardListener = function() {
 /**
 Add animations for cards matching and not matching
 */
-  if (cardOpen.length > 1) {
+ /** if (cardOpen.length > 1) {
     if (card === cardOpen[0]) {
       $deck.find('.open').addClass('match animated infinite rubberBand');
       setTimeout(function() {
@@ -231,5 +231,5 @@ Add animations for cards matching and not matching
   }
 });
 };
-
+*/
 initMemoryGame();
